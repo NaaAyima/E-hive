@@ -1,0 +1,93 @@
+/* styles.css */
+
+:root {
+    /* New Color Palette */
+    --color-light-lavender: #ccccff; /* Light Lavender */
+    --color-lavender: #a3a3cc; /* Lavender */
+    --color-midnight-blue: #5c5c99; /* Midnight Blue */
+    --color-dark-blue: #292966; /* Dark Blue */
+    
+    /* Additional Variables for Styling */
+    --color-text-dark: #333; /* Dark gray for text */
+    --color-text-light: #fff; /* White for text */
+    --color-bg-light: #f9f9f9; /* Light background */
+    --color-bg-dark: #1a1a1a; /* Dark background */
+    --color-border: #ddd; /* Light gray for borders */
+    --color-shadow: rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    --color-overlay: rgba(0, 0, 0, 0.5); /* Overlay effect */
+  
+    /* Font Sizes */
+    --font-size-small: 0.875rem; /* Small text */
+    --font-size-medium: 1rem; /* Base text */
+    --font-size-large: 1.5rem; /* Headings */
+  
+    /* Spacing */
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --spacing-large: 24px;
+  
+    /* Border Radius */
+    --border-radius: 8px;
+  
+    /* Transition */
+    --transition-speed: 0.3s ease;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+  }
+  
+  header {
+    background-color: var(--color-dark-blue);
+    color: var(--color-text-light);
+    padding: var(--spacing-medium) 0;
+    text-align: center;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: var(--font-size-large);
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: var(--spacing-large) auto;
+    background-color: var(--color-bg-light);
+    padding: var(--spacing-medium);
+    box-shadow: 0 0 10px var(--color-shadow);
+    border-radius: var(--border-radius);
+  }
+  
+  #calendar {
+    max-height: 600px; /* Adjust the height as needed */
+    overflow-y: auto;
+  }
+  
+  .fc-event {
+    background-color: var(--color-midnight-blue); /* Event background color */
+    border: none; /* Remove border */
+    color: var(--color-text-light); /* Event text color */
+    transition: background-color var(--transition-speed);
+  }
+  
+  .fc-event:hover {
+    background-color: var(--color-dark-blue); /* Event hover background color */
+  }
+  
+  .fc-today {
+    background-color: var(--color-light-lavender) !important; /* Today's date background color */
+  }
+  
+  .fc-day-header {
+    background-color: var(--color-lavender); /* Day header background color */
+    color: var(--color-text-light); /* Day header text color */
+  }
+  
+  .fc-sun, .fc-sat {
+    background-color: var(--color-bg-light); /* Weekend background color */
+  }

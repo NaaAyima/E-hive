@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - E-Hive</title>
+    <link rel="stylesheet" href= "dashboard.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Admin Dashboard</h1>
+            <nav>
+                <ul>
+                    <li><a href="create-event.html">Create Event</a></li>
+                    <li><a href="manage-users.html">Manage Users</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li><a href="../auth/login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Overview</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Total Events</h3>
+                    <p>5</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Users</h3>
+                    <p>150</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Upcoming Events</h3>
+                    <p>3</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Registrations</h3>
+                    <p>120</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Recent Activities</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Participants</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Workshop on Web Development</td>
+                        <td>45</td>
+                        <td>12/15/2024</td>
+                    </tr>
+                    <tr>
+                        <td>AI Seminar</td>
+                        <td>30</td>
+                        <td>12/20/2024</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 E-Hive. All rights reserved.</p>
+    </footer>
+</body>
+</html>

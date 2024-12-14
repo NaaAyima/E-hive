@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Admin/User Panel</title>
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Register</h1>
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="auth-section">
+    <div class="auth-container">
+      <h2>Create an Account</h2>
+      <form action="/register" method="POST" class="auth-form">
+        <div class="form-group">
+          <label for="user-type">User Type</label>
+          <select id="user-type" name="user-type" required>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+          <label for="preferences">Event Preferences</label>
+          <select id="preferences" name="preferences" multiple required>
+            <option value="workshops">Workshops</option>
+            <option value="seminars">Seminars</option>
+            <option value="club-activities">Club Activities</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit">Register</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 E-Hive Admin Panel</p>
+  </footer>
+</body>
+</html>

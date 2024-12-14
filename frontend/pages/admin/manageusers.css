@@ -1,0 +1,145 @@
+:root {
+    /* New Color Palette */
+    --color-light-lavender: #ccccff; /* Light Lavender */
+    --color-lavender: #a3a3cc; /* Lavender */
+    --color-midnight-blue: #5c5c99; /* Midnight Blue */
+    --color-dark-blue: #292966; /* Dark Blue */
+    
+    /* Additional Variables for Styling */
+    --color-text-dark: #333; /* Dark gray for text */
+    --color-text-light: #fff; /* White for text */
+    --color-bg-light: #f9f9f9; /* Light background */
+    --color-bg-dark: #1a1a1a; /* Dark background */
+    --color-border: #ddd; /* Light gray for borders */
+    --color-shadow: rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    --color-overlay: rgba(0, 0, 0, 0.5); /* Overlay effect */
+  
+    /* Font Sizes */
+    --font-size-small: 0.875rem; /* Small text */
+    --font-size-medium: 1rem; /* Base text */
+    --font-size-large: 1.5rem; /* Headings */
+  
+    /* Spacing */
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --spacing-large: 24px;
+  
+    /* Border Radius */
+    --border-radius: 8px;
+  
+    /* Transition */
+    --transition-speed: 0.3s ease;
+  } 
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+  }
+  
+  /* Header Styles */
+  header {
+    background-color: var(--color-dark-blue);
+    color: var(--color-text-light);
+    padding: var(--spacing-medium);
+    box-shadow: 0 4px 6px var(--color-shadow);
+  }
+  
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header h1 {
+    font-size: var(--font-size-large);
+  }
+  
+  nav ul {
+    list-style: none;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-left: var(--spacing-medium);
+  }
+  
+  nav ul li a {
+    color: var(--color-text-light);
+    font-size: var(--font-size-medium);
+    text-decoration: none;
+  }
+  
+  nav ul li a:hover {
+    color: var(--color-light-lavender);
+  }
+  
+  /* User Management Table */
+  .table-container {
+    margin-top: var(--spacing-large);
+    background-color: var(--color-lavender);
+    padding: var(--spacing-medium);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px var(--color-shadow);
+  }
+  
+  h2 {
+    font-size: var(--font-size-large);
+    color: var(--color-dark-blue);
+    margin-bottom: var(--spacing-medium);
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--spacing-medium);
+  }
+  
+  table th,
+  table td {
+    padding: var(--spacing-small);
+    text-align: left;
+    border: 1px solid var(--color-border);
+  }
+  
+  table th {
+    background-color: var(--color-lavender);
+    color: var(--color-text-light);
+  }
+  
+  table tbody tr:hover {
+    background-color: var(--color-light-lavender);
+  }
+  
+  table tbody tr td button {
+    background-color: var(--color-dark-blue);
+    color: var(--color-text-light);
+    border: none;
+    padding: var(--spacing-small);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+  }
+  
+  table tbody tr td button:hover {
+    background-color: var(--color-midnight-blue);
+  }
+  
+  /* Footer Styles */
+  footer {
+    background-color: var(--color-dark-blue);
+    color: var(--color-text-light);
+    text-align: center;
+    padding: var(--spacing-small);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  

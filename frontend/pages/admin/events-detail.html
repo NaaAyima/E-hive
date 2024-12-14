@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events Detail - Admin Panel</title>
+  <link rel="stylesheet" href="events-details.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Events Detail</h1>
+      <nav>
+        <ul>
+          <li><a href="../admin/dashboard.html">Dashboard</a></li>
+          <li><a href="create-event.html">Create Event</a></li>
+          <li><a href="manage-users.html">Manage Users</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="events-section">
+    <div class="container">
+      <h2>Event List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Event Name</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Available Seats</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="events-list">
+          <!-- Event rows will be populated here -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 E-Hive. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Fetch and display events
+    document.addEventListener('DOMContentLoaded', async () => {
+      const response = await fetch('/events');
+      const events = await response.json();
+
+      const eventsList = document.getElementById('events-list');
+      events.forEach(event => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${event.name}</td>
+          <td>${new Date(event.date).toLocaleDateString()}</td>
+          <td>${event.location}</td>
+          <td>${event.availableSeats}</td>
+          <td>
+            <a href="edit-event.html?id=${event._id}">Edit</a>
+            <a href="eventDetail.html?id=${event._id}">View</a>
+          </td>
+        `;
+        eventsList.appendChild(row);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - E-Hive</title>
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>My Profile</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../auth/logout.html">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="profile-section">
+    <div class="container">
+      <h2>My RSVPs</h2>
+      <div id="rsvp-list">
+        <!-- RSVPed events will be populated here -->
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 E-Hive. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Fetch and display RSVPed events
+    document.addEventListener('DOMContentLoaded', async () => {
+      const response = await fetch('/user/rsvps');
+      const rsvps = await response.json();
+
+      const rsvpList = document.getElementById('rsvp-list');
+      rsvps.forEach(event => {
+        const eventCard = document.createElement('div');
+        eventCard.classList.add('event-card');
+        eventCard.innerHTML = `
+          <h3>${event.name}</h3>
+          <p>Date: ${new Date(event.date).toLocaleDateString()}</p>
+          <p>Location: ${event.location}</p>
+          <p>Description: ${event.description}</p>
+        `;
+        rsvpList.appendChild(eventCard);
+      });
+    });
+  </script>
+</body>
+</html>

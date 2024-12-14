@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - E-Hive</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Settings</h1>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="create-event.html">Create Event</a></li>
+                    <li><a href="manage-users.html">Manage Users</a></li>
+                    <li><a href="../auth/login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <form action="/admin/update-settings" method="POST">
+            <label for="email-notifications">Email Notifications</label>
+            <select id="email-notifications" name="email-notifications">
+                <option value="enabled">Enabled</option>
+                <option value="disabled">Disabled</option>
+            </select>
+
+            <label for="event-reminders">Event Reminders</label>
+            <select id="event-reminders" name="event-reminders">
+                <option value="enabled">Enabled</option>
+                <option value="disabled">Disabled</option>
+            </select>
+
+            <button type="submit" class="btn">Update Settings</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 E-Hive. All rights reserved.</p>
+    </footer>
+</body>
+</html>

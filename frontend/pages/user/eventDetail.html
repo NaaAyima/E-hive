@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Details - E-Hive</title>
+  <link rel="stylesheet" href="eventDetail.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Event Details</h1>
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="../auth/logout.html">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="event-section">
+    <div class="container">
+      <h2 id="event-name">Event Name</h2>
+      <p id="event-date">Date: </p>
+      <p id="event-location">Location: </p>
+      <p id="event-description">Description: </p>
+      <p id="event-available-seats">Available Seats: </p>
+      <button id="rsvp-button" onclick="rsvpEvent()">RSVP</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 E-Hive. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Fetch event details and display them
+    document.addEventListener('DOMContentLoaded', async () => {
+      const eventId = new URLSearchParams(window.location.search).get('id');
+      const response = await fetch(`/events/${eventId}`);
+      const event = await response.json();
+
+      document.getElementById('event-name').textContent = event.name;
+      document.getElementById('event-date').textContent = `Date: ${new Date(event.date).toLocaleDateString()}`;
+      document.getElementById('event-location').textContent = `Location: ${event.location}`;
+      document.getElementById('event-description').textContent = `Description: ${event.description}`;
+      document.getElementById('event-available-seats').textContent = `Available Seats: ${event.availableSeats}`;
+    });
+
+    // RSVP to the event
+    async function rsvpEvent() {
+      const eventId = new URLSearchParams(window.location.search).get('id');
+      const response = await fetch(`/events/rsvp/${eventId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        alert('RSVP successful!');
+        window.location.reload();
+      } else {
+        alert('RSVP failed. Please try again.');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Calendar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+  <link rel="stylesheet" href="calendar.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+  <style>
+    #calendar {
+      max-height: 600px; /* Adjust the height as needed */
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Event Calendar</h1>
+  </header>
+  <main class="container">
+    <div id="calendar"></div>
+  </main>
+  <script>
+    $(document).ready(function() {
+      $('#calendar').fullCalendar({
+        height: 'auto', // Adjust the calendar height
+        events: [
+          {
+            title: 'Web Development Seminar',
+            start: '2024-12-20',
+            description: 'A comprehensive seminar on modern web development techniques.',
+            location: 'Campus Hall',
+            url: 'eventDetail.html'
+          },
+          {
+            title: 'AI in Education Workshop',
+            start: '2025-01-15',
+            description: 'Workshop discussing AI applications in the educational sector.',
+            location: 'Tech Lab',
+            url: 'eventDetail.html'
+          },
+          {
+            title: 'Sports Club Meeting',
+            start: '2025-02-10',
+            description: 'A fun and engaging meeting for sports enthusiasts.',
+            location: 'Gymnasium',
+            url: 'eventDetail.html'
+          }
+        ],
+        eventClick: function(event) {
+          if (event.url) {
+            window.location.href = event.url;
+            return false; // Prevent the browser from following the link in the default way
+          }
+        },
+        eventRender: function(event, element) {
+          var today = moment().format('YYYY-MM-DD');
+          if (event.start.format('YYYY-MM-DD') === today) {
+            alert('Reminder: ' + event.title + ' is happening today!');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
