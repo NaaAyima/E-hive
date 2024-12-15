@@ -1,4 +1,5 @@
 const User = require('../models/usermodel');
+const event = require('../models/Eventmodel');
 
 // Get user by ID
 exports.getUserById = async (req, res) => {
