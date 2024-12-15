@@ -14,7 +14,7 @@
         <ul>
           <li><a href="profile.html">Profile</a></li>
           <li><a href="events.html">Events</a></li>
-          <li><a href="calendar.html">Calendar</a></li> <!-- Link to calendar.html -->
+          <li><a href="calendar.html">Calendar</a></li>
           <li><a href="../auth/logout.html">Logout</a></li>
         </ul>
       </nav>
@@ -26,7 +26,14 @@
       <div class="dashboard-card">
         <h2>Welcome to your Dashboard</h2>
         <p>Here you can manage your profile, view events, and check the event calendar.</p>
-        <a href="calendar.html" class="btn">View Calendar</a> <!-- Link to calendar.html -->
+        <a href="calendar.html" class="btn">View Calendar</a>
+      </div>
+
+      <div class="dashboard-card">
+        <h2>Upcoming Events</h2>
+        <div id="upcoming-events">
+          <!-- Upcoming events will be populated here -->
+        </div>
       </div>
     </div>
   </section>
@@ -34,5 +41,30 @@
   <footer>
     <p>&copy; 2024 E-Hive. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Fetch and display user's upcoming events
+    document.addEventListener('DOMContentLoaded', async () => {
+      const response = await fetch('/user/upcoming-events');
+      const events = await response.json();
+
+      const eventsContainer = document.getElementById('upcoming-events');
+      if (events.length === 0) {
+        eventsContainer.innerHTML = '<p>No upcoming events.</p>';
+      } else {
+        events.forEach(event => {
+          const eventCard = document.createElement('div');
+          eventCard.classList.add('event-card');
+          eventCard.innerHTML = `
+            <h3>${event.name}</h3>
+            <p>Date: ${new Date(event.date).toLocaleDateString()}</p>
+            <p>Location: ${event.location}</p>
+            <p>Description: ${event.description}</p>
+          `;
+          eventsContainer.appendChild(eventCard);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
