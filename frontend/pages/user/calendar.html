@@ -39,7 +39,7 @@
       $('#calendar').fullCalendar({
         events: '/events',
         eventClick: function(event) {
-          window.location.href = `user/eventDetail.html?id=${event._id}`;
+          window.location.href = `eventDetail.html?id=${event._id}`;
         }
       });
     });
