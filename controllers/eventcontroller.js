@@ -1,5 +1,4 @@
 const Event = require('../models/Eventmodel');
-const User = require('../models/Usermodel'); 
 
 // Controller to get all events
 exports.getAllEvents = async (req, res) => {
@@ -42,7 +41,7 @@ exports.createEvent = async (req, res) => {
     await event.save();
     res.status(201).json({ message: 'Event created successfully', event });
   } catch (error) {
-    res.status(500).json({ message: 'Error creating event', error: error.message });
+  
   }
 };
 
