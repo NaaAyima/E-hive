@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const User = require('../models/usermodel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -48,9 +47,6 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-=======
-const User = require('../models/usermodel.js');
->>>>>>> e1191edf3abd68a0cb4d159b0b970738dbd050d9
 
 // Get user by ID
 exports.getUserById = async (req, res) => {
