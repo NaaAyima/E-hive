@@ -3,19 +3,25 @@ const userController = require('../controllers/usercontroller');
 
 const router = express.Router();
 
-// Create a new user
-router.post('/users', userController.createUser);
-
-// Authenticate user and generate a token
-router.post('/users/login', userController.loginUser);
-
 // Get user by ID
-router.get('/users/:id', userController.getUserById);
+router.get('/:id', userController.getUserById);
 
-// Update user by ID
-router.put('/users/:id', userController.updateUser);
+// Update user preferences
+router.put('/:id/preferences', userController.updatePreferences);
 
-// Delete user by ID
-router.delete('/users/:id', userController.deleteUser);
+// Update user RSVPs
+router.put('/:id/rsvps', userController.updateRsvps);
+
+// Create a new user
+router.post('/', userController.createUser);
+
+// Delete a user by ID
+router.delete('/:id', userController.deleteUser);
+
+// Get all users
+router.get('/', userController.getAllUsers);
+
+// User login
+router.post('/login', userController.login);
 
 module.exports = router;

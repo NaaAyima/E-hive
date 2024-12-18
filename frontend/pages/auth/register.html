@@ -22,7 +22,7 @@
   <section class="auth-section">
     <div class="auth-container">
       <h2>Create an Account</h2>
-      <form action="/register" method="POST" class="auth-form">
+      <form class="auth-form">
         <div class="form-group">
           <label for="user-type">User Type</label>
           <select id="user-type" name="user-type" required>
@@ -39,15 +39,24 @@
           <input type="password" id="password" name="password" required>
         </div>
         <div class="form-group">
-          <label for="preferences">Event Preferences</label>
-          <select id="preferences" name="preferences" multiple required>
-            <option value="workshops">Workshops</option>
-            <option value="seminars">Seminars</option>
-            <option value="club-activities">Club Activities</option>
-          </select>
+          <label>Event Preferences</label>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="preferences" value="workshops">
+              Workshops
+            </label>
+            <label>
+              <input type="checkbox" name="preferences" value="seminars">
+              Seminars
+            </label>
+            <label>
+              <input type="checkbox" name="preferences" value="club-activities">
+              Club Activities
+            </label>
+          </div>
         </div>
         <div class="form-group">
-          <button type="submit">Register</button>
+          <button type="button">Register</button>
         </div>
       </form>
     </div>
@@ -55,6 +64,7 @@
 
   <footer>
     <p>&copy; 2024 E-Hive Admin Panel</p>
+    <script src="../../scripts/register.js"></script>
   </footer>
 </body>
 </html>

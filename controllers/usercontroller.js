@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const User = require('../models/usermodel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -47,53 +48,121 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+=======
+const User = require('../models/usermodel.js');
+>>>>>>> e1191edf3abd68a0cb4d159b0b970738dbd050d9
 
 // Get user by ID
 exports.getUserById = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id).populate('rsvps');
-
+        const user = await User.findById(req.params.id);
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).send('User not found');
         }
-
         res.status(200).json(user);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).send(error.message);
     }
 };
 
-// Update user by ID
-exports.updateUser = async (req, res) => {
+// Update user preferences
+exports.updatePreferences = async (req, res) => {
     try {
-        const { userType, email, preferences } = req.body;
-        const updatedUser = await User.findByIdAndUpdate(
+        const user = await User.findByIdAndUpdate(
             req.params.id,
-            { userType, email, preferences },
+            { preferences: req.body.preferences },
             { new: true }
         );
-
-        if (!updatedUser) {
-            return res.status(404).json({ message: 'User not found' });
+        if (!user) {
+            return res.status(404).send('User not found');
         }
-
-        res.status(200).json(updatedUser);
+        res.status(200).json(user);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).send(error.message);
     }
 };
 
-// Delete user by ID
+// Update user RSVPs
+exports.updateRsvps = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            { rsvps: req.body.rsvps },
+            { new: true }
+        );
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+// Create a new user
+exports.createUser = async (req, res) => {
+    try {
+        const user = new User(req.body);
+        await user.save();
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
+// Delete a user by ID
 exports.deleteUser = async (req, res) => {
     try {
-        const deletedUser = await User.findByIdAndDelete(req.params.id);
+        const user = await User.findByIdAndDelete(req.params.id);
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+        res.status(200).send('User deleted successfully');
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
 
-        if (!deletedUser) {
-            return res.status(404).json({ message: 'User not found' });
+// Get all users
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
+exports.login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Check if email and password are provided
+        if (!email || !password) {
+            return res.status(400).send('Email and password are required');
         }
 
-        res.status(200).json({ message: 'User deleted successfully' });
+        // Find user by email
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        // Compare raw password strings
+        if (password !== user.password) {
+            return res.status(400).send('Invalid credentials');
+        }
+
+        // Respond with user details (excluding password)
+        res.status(200).json({
+            user: {
+                id: user._id,
+                email: user.email,
+                userType: user.userType,
+                preferences: user.preferences,
+            },
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Login error:', error);
+        res.status(500).send('Internal server error');
     }
 };

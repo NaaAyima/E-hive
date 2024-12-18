@@ -3,19 +3,25 @@ const eventController = require('../controllers/eventcontroller');
 
 const router = express.Router();
 
-// Get all events
+// Route to get all events
 router.get('/', eventController.getAllEvents);
 
-// Get a single event by ID
+// Route to get a single event by ID
 router.get('/:id', eventController.getEventById);
 
-// Create a new event
+// Route to create a new event (Admin Only)
 router.post('/', eventController.createEvent);
 
-// Update an existing event
+// Route to RSVP a user to an event
+router.post('/:id/rsvp', eventController.rsvpEvent);
+
+// Route to update RSVP (only modifies the RSVP list)
+router.put('/:id/rsvp', eventController.updateRSVP);
+
+// Route to update an existing event
 router.put('/:id', eventController.updateEvent);
 
-// Delete an event
+// Route to delete an event
 router.delete('/:id', eventController.deleteEvent);
 
 module.exports = router;

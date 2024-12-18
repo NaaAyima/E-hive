@@ -37,36 +37,69 @@
   </footer>
 
   <script>
-    // Fetch event details and display them
-    document.addEventListener('DOMContentLoaded', async () => {
-      const eventId = new URLSearchParams(window.location.search).get('id');
-      const response = await fetch(`/events/${eventId}`);
-      const event = await response.json();
+   // Fetch event details and display them
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const eventId = new URLSearchParams(window.location.search).get('id');
+    const response = await fetch(`/events/${eventId}`);
 
-      document.getElementById('event-name').textContent = event.name;
-      document.getElementById('event-date').textContent = `Date: ${new Date(event.date).toLocaleDateString()}`;
-      document.getElementById('event-location').textContent = `Location: ${event.location}`;
-      document.getElementById('event-description').textContent = `Description: ${event.description}`;
-      document.getElementById('event-available-seats').textContent = `Available Seats: ${event.availableSeats}`;
+    if (!response.ok) {
+      throw new Error(`Failed to fetch event details: ${response.statusText}`);
+    }
+
+    const event = await response.json();
+
+    document.getElementById('event-name').textContent = event.name;
+    document.getElementById('event-date').textContent = `Date: ${new Date(event.date).toLocaleDateString()}`;
+    document.getElementById('event-location').textContent = `Location: ${event.location}`;
+    document.getElementById('event-description').textContent = `Description: ${event.description}`;
+    document.getElementById('event-available-seats').textContent = `Available Seats: ${event.availableSeats}`;
+  } catch (error) {
+    console.error('Error loading event details:', error);
+    alert('Failed to load event details. Please try again later.');
+  }
+});
+
+// RSVP to the event
+async function rsvpEvent() {
+  try {
+    // Get the eventId from the URL
+    const eventId = new URLSearchParams(window.location.search).get('id');
+
+    // Retrieve the user object from local storage
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    // Extract the userId from the user object (assuming it's stored in the user object)
+    const userId = user ? user.id : null;
+
+    if (!userId) {
+      throw new Error('User not found in local storage');
+    }
+
+    // Send the POST request with the userId and eventId
+    const response = await fetch(`/events/${eventId}/rsvp`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userId }), // Include the userId in the request body
     });
 
-    // RSVP to the event
-    async function rsvpEvent() {
-      const eventId = new URLSearchParams(window.location.search).get('id');
-      const response = await fetch(`/events/rsvp/${eventId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        alert('RSVP successful!');
-        window.location.reload();
-      } else {
-        alert('RSVP failed. Please try again.');
-      }
+    if (!response.ok) {
+      throw new Error(`RSVP failed: ${response.statusText}`);
     }
+
+    const data = await response.json();
+    console.log('RSVP success:', data);
+
+    alert('RSVP successful!');
+    window.location.reload();
+  } catch (error) {
+    console.error('Error during RSVP:', error);
+    alert('Failed to RSVP. Please try again.');
+  }
+}
+
   </script>
 </body>
 </html>
